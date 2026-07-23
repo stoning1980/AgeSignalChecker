@@ -22,6 +22,11 @@ app/build/
 # Local configuration file
 local.properties
 
+# Release signing secrets (KEEP A SECURE BACKUP - required to update the app)
+keystore.properties
+*.jks
+*.keystore
+
 # Android Studio
 *.iml
 .idea/
