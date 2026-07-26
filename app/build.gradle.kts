@@ -12,16 +12,24 @@ val keystoreProperties = Properties().apply {
     }
 }
 
+val ageSignalsVersion = "0.0.4"
+
 android {
     namespace = "com.baijiahu.test.age.signal"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.baijiahu.test.age.signal"
         minSdk = 23
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        targetSdk = 35
+        versionCode = 2
+        versionName = "1.0.1"
+
+        buildConfigField("String", "AGE_SIGNALS_VERSION", "\"$ageSignalsVersion\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     signingConfigs {
@@ -57,7 +65,7 @@ android {
 }
 
 dependencies {
-    implementation("com.google.android.play:age-signals:0.0.4")
+    implementation("com.google.android.play:age-signals:$ageSignalsVersion")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")

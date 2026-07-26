@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -16,9 +17,15 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
+    private companion object {
+        const val DISABLED_ALPHA = 0.4f
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        title = "${getString(R.string.app_name)} (SDK ${BuildConfig.AGE_SIGNALS_VERSION})"
 
         val btnRequestAccess = findViewById<Button>(R.id.btnRequestAccess)
         val btnFetch = findViewById<Button>(R.id.btnFetch)
@@ -27,11 +34,21 @@ class MainActivity : AppCompatActivity() {
         val tvLatency = findViewById<TextView>(R.id.tvLatency)
         val tvResults = findViewById<TextView>(R.id.tvResults)
 
+        btnFetch.alpha = DISABLED_ALPHA
+
         btnRequestAccess.setOnClickListener {
             viewModel.requestAgeSignalsAccess(this)
         }
 
         btnFetch.setOnClickListener {
+            if (!viewModel.isAccessGranted) {
+                Toast.makeText(
+                    this,
+                    "You need to request age signal access first",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
             viewModel.fetchAgeSignals(applicationContext)
         }
 
@@ -84,6 +101,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     is AgeSignalUiState.AccessSuccess -> {
                         progressBar.visibility = View.GONE
+                        btnFetch.alpha = if (viewModel.isAccessGranted) 1f else DISABLED_ALPHA
                         tvStatus.text = "✅ ACCESS REQUEST DONE"
                         tvStatus.setTextColor(
                             ContextCompat.getColor(this@MainActivity, android.R.color.holo_green_dark)

@@ -19,8 +19,15 @@ import kotlin.coroutines.resumeWithException
 
 class MainViewModel : ViewModel() {
 
+    private companion object {
+        const val AGE_SIGNALS_STATUS_SHARED = 1
+    }
+
     private val _uiState = MutableStateFlow<AgeSignalUiState>(AgeSignalUiState.Idle)
     val uiState: StateFlow<AgeSignalUiState> = _uiState
+
+    var isAccessGranted: Boolean = false
+        private set
 
     fun fetchAgeSignals(context: Context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
@@ -68,6 +75,7 @@ class MainViewModel : ViewModel() {
             try {
                 val result = requestAccess(activity)
                 val latency = System.currentTimeMillis() - startTime
+                isAccessGranted = result.ageSignalsStatus() == AGE_SIGNALS_STATUS_SHARED
                 _uiState.value = AgeSignalUiState.AccessSuccess(
                     ageSignalsStatus = result.ageSignalsStatus(),
                     ageSignalsStatusName = mapAgeSignalsStatus(result.ageSignalsStatus()),
