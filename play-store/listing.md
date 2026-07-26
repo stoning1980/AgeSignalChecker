@@ -28,16 +28,21 @@ API, measures the response time, and displays the full result in a clear,
 readable format — no setup, no account, no configuration required.
 
 WHAT IT DOES
-Tap "Fetch store age" and the app requests age signals from Google Play, then
-shows you exactly what the API returned:
+The app exposes both functions of the Age Signals API:
 
-• User status (VERIFIED, SUPERVISED, SUPERVISED_APPROVAL_PENDING,
-  SUPERVISED_APPROVAL_DENIED, UNKNOWN, or DECLARED), with the numeric code and
-  its human-readable name side by side.
-• Age range — the lower and upper age bounds reported for the account.
-• Install ID associated with the request.
-• API latency in milliseconds, so you can see how fast the call resolved.
-• The raw API result string for deeper inspection.
+• "Request age signals access" triggers the Google Play in-app prompt for age
+  range sharing and shows the resulting access status (UNSPECIFIED, SHARED,
+  NOT_SHARED, or VERIFICATION_REQUIRED).
+• "Check age signals" reads the current signals and shows you exactly what the
+  API returned:
+  - Age range source (UNSPECIFIED, TIER_A, TIER_B, TIER_C, or TIER_D), with the
+    numeric code and its human-readable name side by side.
+  - Significant change status (UNSPECIFIED, APPROVED, PENDING, or DECLINED) and
+    the significant change approval date.
+  - Age range — the lower and upper age bounds reported for the account.
+  - Install ID associated with the request.
+  - API latency in milliseconds, so you can see how fast the call resolved.
+  - The raw API result string for deeper inspection.
 
 BUILT-IN ERROR DIAGNOSTICS
 When a call fails, the app doesn't hide the details. It surfaces the exception
@@ -95,7 +100,8 @@ honest view of what the Age Signals API returns.
 ## Release notes (What's new — max 500 chars)
 
 ```
-Initial release. Fetch and inspect Google Play Age Signals API results,
-including user status, age range, install ID, latency, raw output, and detailed
-error diagnostics.
+Initial release. Request Age Signals access and inspect Google Play Age Signals
+API results, including age range source, significant change status and approval
+date, age range, install ID, latency, raw output, and detailed error
+diagnostics.
 ```
