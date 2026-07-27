@@ -9,6 +9,9 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -25,7 +28,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        title = "${getString(R.string.app_name)} (SDK ${BuildConfig.AGE_SIGNALS_VERSION})"
+        findViewById<TextView>(R.id.tvTitle).text =
+            "${getString(R.string.app_name)} (SDK ${BuildConfig.AGE_SIGNALS_VERSION})"
+
+        val rootScroll = findViewById<View>(R.id.rootScroll)
+        val basePadding = rootScroll.paddingTop
+        ViewCompat.setOnApplyWindowInsetsListener(rootScroll) { view, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(
+                left = basePadding + bars.left,
+                top = basePadding + bars.top,
+                right = basePadding + bars.right,
+                bottom = basePadding + bars.bottom
+            )
+            insets
+        }
 
         val btnRequestAccess = findViewById<Button>(R.id.btnRequestAccess)
         val btnFetch = findViewById<Button>(R.id.btnFetch)
