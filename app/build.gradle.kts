@@ -22,8 +22,8 @@ android {
         applicationId = "com.baijiahu.test.age.signal.legacy"
         minSdk = 23
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.1"
 
         buildConfigField("String", "AGE_SIGNALS_VERSION", "\"$ageSignalsVersion\"")
     }
