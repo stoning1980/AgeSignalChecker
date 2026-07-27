@@ -22,8 +22,8 @@ android {
         applicationId = "com.baijiahu.test.age.signal"
         minSdk = 23
         targetSdk = 36
-        versionCode = 6
-        versionName = "1.0.6"
+        versionCode = 7
+        versionName = "1.0.7"
 
         buildConfigField("String", "AGE_SIGNALS_VERSION", "\"$ageSignalsVersion\"")
     }
@@ -45,7 +45,12 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = if (keystorePropertiesFile.exists()) {
                 signingConfigs.getByName("release")
             } else {
