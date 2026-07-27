@@ -62,6 +62,30 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    applicationVariants.all {
+        outputs.all {
+            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl)
+                .outputFileName = "app-${buildType.name}-$ageSignalsVersion.apk"
+        }
+    }
+}
+
+tasks.register("renameReleaseBundle") {
+    doLast {
+        val bundleDir = layout.buildDirectory.dir("outputs/bundle/release").get().asFile
+        val original = bundleDir.resolve("app-release.aab")
+        if (original.exists()) {
+            original.copyTo(bundleDir.resolve("app-release-$ageSignalsVersion.aab"), overwrite = true)
+            original.delete()
+        }
+    }
+}
+
+tasks.whenTaskAdded {
+    if (name == "bundleRelease") {
+        finalizedBy("renameReleaseBundle")
+    }
 }
 
 dependencies {
