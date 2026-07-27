@@ -16,12 +16,12 @@ val ageSignalsVersion = "0.0.3"
 
 android {
     namespace = "com.baijiahu.test.age.signal"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.baijiahu.test.age.signal.legacy"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
