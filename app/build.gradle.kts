@@ -12,18 +12,18 @@ val keystoreProperties = Properties().apply {
     }
 }
 
-val ageSignalsVersion = "0.0.4"
+val ageSignalsVersion = "0.0.3"
 
 android {
     namespace = "com.baijiahu.test.age.signal"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.baijiahu.test.age.signal"
+        applicationId = "com.baijiahu.test.age.signal.legacy"
         minSdk = 23
-        targetSdk = 35
-        versionCode = 4
-        versionName = "1.0.4"
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
 
         buildConfigField("String", "AGE_SIGNALS_VERSION", "\"$ageSignalsVersion\"")
     }
