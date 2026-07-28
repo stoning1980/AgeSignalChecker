@@ -1,66 +1,56 @@
-# Age Signal Checker
+# Privacy Policy for Age Signal Checker
 
-A lightweight Android developer/QA utility for testing the [Google Play Age Signals API](https://developer.android.com/google/play/age-signals) on a real device. Tap a button, and the app calls the API, measures latency, and displays the full result — including detailed error diagnostics when a call fails.
+_Last updated: July 28, 2026_
 
-- **Package:** `com.baijiahu.test.age.signal`
-- **Min SDK:** 23 (Android 6.0) · **Target/Compile SDK:** 34
-- **Age Signals SDK:** `com.google.android.play:age-signals:0.0.4`
+This Privacy Policy describes how the **Age Signal Checker** app (package name
+`com.baijiahu.test.age.signal`, the "App") handles information. The App is a developer
+tool for testing the Google Play Age Signals API. Your privacy is important to us, and
+this policy explains our practices in plain language.
 
-## Features
+## 1. Information We Collect
 
-The app exposes the two-function architecture introduced in age-signals 0.0.4:
+The App **does not collect, store, or share any personal or sensitive user data**. There
+is no account to create, and the App does not gather names, email addresses, contacts,
+location, or device identifiers for our own purposes.
 
-- **Request age signals access** — calls `requestAgeSignalsAccess()`, which triggers the Play in-app prompt for age range sharing. Displays the returned `ageSignalsStatus` (UNSPECIFIED, SHARED, NOT_SHARED, VERIFICATION_REQUIRED). Requires an `Activity`.
-- **Check age signals** — calls `checkAgeSignals()` and displays:
-  - `ageRangeSource` (UNSPECIFIED, TIER_A–TIER_D)
-  - `significantChangeStatus` (UNSPECIFIED, APPROVED, PENDING, DECLINED)
-  - `significantChangeApprovalDate`
-  - Age lower/upper bounds and install ID
-  - The raw result string
+## 2. Age Signals API
 
-Both flows report API latency in milliseconds. Failures surface the exception type, message, error code (via `AgeSignalsException.getErrorCode()`), and full stack trace. Devices below API 23 show a clear "unsupported" message.
+The App's core function is to call the Google Play Age Signals API (version 0.0.4) and
+display the result on your device. It exposes two actions:
 
-> Note: `userStatus` was deprecated and removed in 0.0.4; it is replaced by `ageRangeSource` and `significantChangeStatus`.
+- **Request age signals access** — invokes `requestAgeSignalsAccess()`, which may launch
+  a Google Play consent flow, and displays the returned age signals status.
+- **Check age signals** — invokes `checkAgeSignals()` and displays the returned values
+  (age range source, significant change status, significant change approval date, age
+  lower/upper bounds, and install ID).
 
-## Architecture
+These requests are handled entirely by Google Play services on your device. The values
+returned are shown **on-screen only**. The App does not transmit them to us or to any
+third party, and it keeps no copy of these values after you close it.
 
-A single-screen app using a `ViewModel` and a `StateFlow` of a sealed UI state.
+Google's handling of these requests is governed by the
+[Google Privacy Policy](https://policies.google.com/privacy).
 
-- `MainActivity.kt` — wires the two buttons and renders each UI state.
-- `MainViewModel.kt` — wraps the callback-based SDK Tasks in coroutines and maps result codes to readable names.
-- `AgeSignalUiState.kt` — sealed states: `Idle`, `Loading`, `Success`, `AccessSuccess`, `Error`, `Unsupported`.
+## 3. Advertising and Analytics
 
-## Building
+The App contains **no advertising**, **no in-app purchases**, and **no third-party
+analytics or tracking SDKs**.
 
-```bash
-# Debug APK
-./gradlew :app:assembleDebug
-# -> app/build/outputs/apk/debug/app-debug.apk
+## 4. Data Sharing
 
-# Release APK (signed if keystore.properties is present)
-./gradlew :app:assembleRelease
-# -> app/build/outputs/apk/release/app-release.apk
-```
+Because the App does not collect data, it does not sell or share any user data with third
+parties.
 
-Install on a connected device:
+## 5. Children's Privacy
 
-```bash
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-```
+The App does not knowingly collect any information from children or any other users.
 
-## Release signing
+## 6. Changes to This Policy
 
-Release builds are signed when a `keystore.properties` file exists at the project root:
+We may update this Privacy Policy from time to time. Any changes will be posted on this
+page with an updated "Last updated" date.
 
-```properties
-storeFile=release-keystore.jks
-storePassword=...
-keyAlias=...
-keyPassword=...
-```
+## 7. Contact
 
-`keystore.properties`, `*.jks`, and `*.keystore` are git-ignored. **Keep a secure backup** of the keystore — it is required to publish future updates. If no `keystore.properties` is present, the release build is left unsigned.
-
-## Publishing
-
-Play Store listing copy and metadata live in [`play-store/listing.md`](play-store/listing.md), with a privacy policy in `play-store/privacy-policy.html`.
+If you have any questions about this Privacy Policy, contact us at:
+stoning@gmail.com
