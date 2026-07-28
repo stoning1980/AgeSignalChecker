@@ -49,4 +49,4 @@ page with an updated "Last updated" date.
 ## 7. Contact
 
 If you have any questions about this Privacy Policy, contact us at:
-YOUR_EMAIL@example.com
+stoning@gmail.com

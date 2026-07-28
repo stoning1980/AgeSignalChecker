@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Privacy Policy — Age Signal Checker</title>
+    <title>Privacy Policy — Age Signal Checker (Legacy)</title>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
                max-width: 760px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; line-height: 1.6; }
@@ -14,12 +14,12 @@
     </style>
 </head>
 <body>
-    <h1>Privacy Policy for Age Signal Checker</h1>
-    <p class="muted">Last updated: July 21, 2026</p>
+    <h1>Privacy Policy for Age Signal Checker (Legacy)</h1>
+    <p class="muted">Last updated: July 28, 2026</p>
 
     <p>
         This Privacy Policy describes how the <strong>Age Signal Checker</strong> app
-        (package name <code>com.baijiahu.test.age.signal</code>, the &ldquo;App&rdquo;)
+        (package name <code>com.baijiahu.test.age.signal.legacy</code>, the &ldquo;App&rdquo;)
         handles information. Your privacy is important to us, and this policy explains
         our practices in plain language.
     </p>
@@ -34,12 +34,13 @@
 
     <h2>2. Age Signals API</h2>
     <p>
-        The App&rsquo;s core function is to call the Google Play Age Signals API and
-        display the result on your device. When you tap the fetch button, the request
-        is handled by Google Play services. The values returned (such as user status,
-        age range, and install ID) are shown <strong>on-screen only</strong> and are
-        not transmitted to us or to any third party by the App. The App keeps no copy
-        of these values after you close it.
+        The App&rsquo;s core function is to call the Google Play Age Signals API
+        (version 0.0.3) and display the result on your device. When you tap the fetch
+        button, the App invokes <code>checkAgeSignals()</code> and the request is handled
+        by Google Play services. The values returned (such as user status, age range, and
+        install ID) are shown <strong>on-screen only</strong> and are not transmitted to
+        us or to any third party by the App. The App keeps no copy of these values after
+        you close it.
     </p>
     <p>
         Google&rsquo;s handling of this request is governed by the
@@ -75,7 +76,7 @@
     <h2>7. Contact</h2>
     <p>
         If you have any questions about this Privacy Policy, contact us at:
-        <a href="mailto:YOUR_EMAIL@example.com">YOUR_EMAIL@example.com</a>.
+        <a href="mailto:stoning@gmail.com">stoning@gmail.com</a>.
     </p>
 </body>
 </html>
