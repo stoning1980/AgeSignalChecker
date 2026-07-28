@@ -1,0 +1,9 @@
+See AGENTS.md for all repository conventions. It is the single source of truth for this
+project: the two-branch release strategy (p/junjiang.j/0.0.4 and p/junjiang.j/0.0.3,
+distinct applicationIds), per-branch version-code bumping before every upload build,
+edge-to-edge/action-bar handling at SDK 36 (NoActionBar theme + WindowInsets listener),
+R8 minification with the deobfuscation mapping file and Age Signals SDK keep rules,
+release artifact naming (app-release-<sdkVersion>.aab), the version-badged launcher icons
+and Play Store graphics, and the verify-on-device workflow.
+
+Read AGENTS.md before making changes, and keep it updated when conventions change.
