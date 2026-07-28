@@ -15,7 +15,7 @@
 </head>
 <body>
     <h1>Privacy Policy for Age Signal Checker</h1>
-    <p class="muted">Last updated: July 21, 2026</p>
+    <p class="muted">Last updated: July 28, 2026</p>
 
     <p>
         This Privacy Policy describes how the <strong>Age Signal Checker</strong> app
@@ -34,15 +34,18 @@
 
     <h2>2. Age Signals API</h2>
     <p>
-        The App&rsquo;s core function is to call the Google Play Age Signals API and
-        display the result on your device. When you tap the fetch button, the request
-        is handled by Google Play services. The values returned (such as user status,
-        age range, and install ID) are shown <strong>on-screen only</strong> and are
-        not transmitted to us or to any third party by the App. The App keeps no copy
-        of these values after you close it.
+        The App&rsquo;s core function is to call the Google Play Age Signals API
+        (version 0.0.4) and display the result on your device. It exposes two actions:
+        <strong>Request age signals access</strong> (which calls
+        <code>requestAgeSignalsAccess()</code> and may launch a Google Play consent flow)
+        and <strong>Check age signals</strong> (which calls <code>checkAgeSignals()</code>).
+        The values returned (such as age range source, significant change status, age
+        range, and install ID) are shown <strong>on-screen only</strong> and are not
+        transmitted to us or to any third party by the App. The App keeps no copy of
+        these values after you close it.
     </p>
     <p>
-        Google&rsquo;s handling of this request is governed by the
+        Google&rsquo;s handling of these requests is governed by the
         <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
         Google Privacy Policy</a>.
     </p>
@@ -75,7 +78,7 @@
     <h2>7. Contact</h2>
     <p>
         If you have any questions about this Privacy Policy, contact us at:
-        <a href="mailto:YOUR_EMAIL@example.com">YOUR_EMAIL@example.com</a>.
+        <a href="mailto:stoning@gmail.com">stoning@gmail.com</a>.
     </p>
 </body>
 </html>
